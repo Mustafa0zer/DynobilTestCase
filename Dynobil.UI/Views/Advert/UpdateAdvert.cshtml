@@ -1,0 +1,125 @@
+﻿@model Dynobil.Entities.SellingAdvert
+
+@{
+    ViewData["Title"] = "UpdateAdvert";
+}
+
+<h1>İlan Güncelleme</h1>
+
+<p>Lütfen marka ve model bilgisini tekrar doldurunuz.</p>
+<hr />
+<div class="row">
+    <div class="col-md-4" >
+        <form asp-action="UpdateAdvert">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @Html.Label("Brand", "Marka")
+                <select id="brandDropdown" class="form-control">
+                    <option value="">Select Brand</option>
+                    @foreach (var brand in (SelectList)ViewBag.BrandList)
+                    {
+                        <option value="@brand.Value">@brand.Text</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ModelId, "Model Seçimi")
+                @Html.DropDownListFor(model => model.ModelId, new SelectList(Enumerable.Empty<SelectListItem>()), "Select Model", new { @class = "form-control", id = "modelDropdown" })
+            </div>
+            <div class="form-group">
+                <label asp-for="Year" class="control-label"></label>
+                <input asp-for="Year" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SellingPrice" class="control-label"></label>
+                <input asp-for="SellingPrice" class="form-control" />
+                <span asp-validation-for="SellingPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KmDriven" class="control-label"></label>
+                <input asp-for="KmDriven" class="form-control" />
+                <span asp-validation-for="KmDriven" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fuel" class="control-label"></label>
+                <input asp-for="Fuel" class="form-control" />
+                <span asp-validation-for="Fuel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Transmission" class="control-label"></label>
+                <input asp-for="Transmission" class="form-control" />
+                <span asp-validation-for="Transmission" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Engine" class="control-label"></label>
+                <input asp-for="Engine" class="form-control" />
+                <span asp-validation-for="Engine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Power" class="control-label"></label>
+                <input asp-for="Power" class="form-control" />
+                <span asp-validation-for="Power" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Seats" class="control-label"></label>
+                <input asp-for="Seats" class="form-control" />
+                <span asp-validation-for="Seats" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" type="hidden"value="true" /> 
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsDeleted" type="hidden" value="false" />
+                </label>
+            </div>
+         @*    <div class="form-group">
+                <label asp-for="ModelId" class="control-label"></label>
+                <input asp-for="ModelId" class="form-control" />
+                <span asp-validation-for="ModelId" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+@*                 <label asp-for="Id" class="control-label"></label>
+ *@                <input asp-for="Id" type="hidden" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#brandDropdown').change(function () {
+                var brandId = $(this).val();
+                $('#selectedBrandId').val(brandId);
+                $('#modelDropdown').empty();
+
+                if (brandId) {
+                    $.getJSON('@Url.Action("GetModelsByBrandId", "Advert")', { brandId: brandId }, function (models) {
+                        $('#modelDropdown').append('<option value="">Select Model</option>');
+                        $.each(models, function (index, model) {
+                            $('#modelDropdown').append('<option value="' + model.id + '">' + model.name + '</option>');
+                        });
+                    });
+                } else {
+                    $('#modelDropdown').append('<option value="">Select Model</option>');
+                }
+            });
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

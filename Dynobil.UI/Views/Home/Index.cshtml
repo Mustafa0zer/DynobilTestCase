@@ -1,0 +1,73 @@
+﻿@model Dynobil.UI.Models.DashBoardVM
+
+@{
+    ViewData["Title"] = "Index";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index</title>
+    <style>
+        .title{
+            font-size:50px;
+        }
+        .row {
+            margin-top: 50px;
+        }
+
+        .circle-button {
+            width: 200px; /* Düğmenin genişliği */
+            height: 200px; /* Düğmenin yüksekliği */
+            border-radius: 50%; /* Tam yuvarlak yapmak için */
+            background-color: white; /* Düğme rengi */
+            color: #FA4D09; /* Metin rengi */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px; /* Metin boyutu */
+            border: 15px solid #FA4D09;
+            cursor: pointer;
+            margin: 10px 70px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="container">
+            <div class="row" >
+                <h1 class="title">GÜNCEL VERİLER</h1>
+                <hr />
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h4>Sistemde Bulunan Marka Sayısı</h4>
+                </div>
+                <div class="col">
+                    <h4>Sistemde Bulunan Model Sayısı</h4>
+                </div>
+                <div class="col">
+                    <h4>Sistemde Bulunan Aktif İlan Sayısı</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button class="circle-button">
+                        @Html.DisplayFor(model => model.BrandCount)
+                    </button>
+                </div>
+                <div class="col">
+                    <button class="circle-button">
+                        @Html.DisplayFor(model => model.ModelCount)
+                    </button>
+                </div>
+                <div class="col">
+                    <button class="circle-button">
+                        @Html.DisplayFor(model => model.AdvertCount)
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

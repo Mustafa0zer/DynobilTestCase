@@ -1,0 +1,80 @@
+﻿@model Dynobil.Entities.SellingAdvert
+
+@{
+    ViewData["Title"] = "DetailAdvert";
+}
+
+<h1>İlan Detayları</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Marka
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Model.Brand.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Model
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            Yıl
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+        <dt class = "col-sm-2">
+           Satış Fiyatı
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SellingPrice)
+        </dd>
+        <dt class = "col-sm-2">
+            KM Bilgisi
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KmDriven)
+        </dd>
+        <dt class = "col-sm-2">
+           Yakıt 
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Fuel)
+        </dd>
+        <dt class = "col-sm-2">
+            Vites 
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Transmission)
+        </dd>
+        <dt class = "col-sm-2">
+           Motor Hacmi
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Engine)
+        </dd>
+        <dt class = "col-sm-2">
+            Motor Gücü
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Power)
+        </dd>
+        <dt class = "col-sm-2">
+            Koltuk Sayısı
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Seats)
+        </dd>
+
+        
+    </dl>
+</div>
+<div>
+    <span><a class="text-black" asp-action="UpdateAdvert" asp-route-id=@Model.Id >Düzenle</a> </span>
+    |
+    <a asp-action="Index" class="text-black" >Listeye Geri Dön</a>
+</div>

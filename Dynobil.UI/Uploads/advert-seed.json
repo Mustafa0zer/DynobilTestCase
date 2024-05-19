@@ -1,0 +1,43 @@
+{
+  "data": [
+    {
+      "Year": 2010,
+      "SellingPrice": 25000,
+      "KmDriven": 100000,
+      "Fuel": "Gasoline",
+      "Transmission": "Automatic",
+      "Engine": "2.0L",
+      "Power": "200 hp",
+      "Seats": 5,
+      "IsActive": true,
+      "IsDeleted": false,
+      "ModelId": 1
+    },
+    {
+      "Year": 2012,
+      "SellingPrice": 30000,
+      "KmDriven": 80000,
+      "Fuel": "Diesel",
+      "Transmission": "Manual",
+      "Engine": "2.2L",
+      "Power": "180 hp",
+      "Seats": 7,
+      "IsActive": true,
+      "IsDeleted": false,
+      "ModelId": 2
+    },
+    {
+      "Year": 2015,
+      "SellingPrice": 35000,
+      "KmDriven": 60000,
+      "Fuel": "Gasoline",
+      "Transmission": "Automatic",
+      "Engine": "3.0L",
+      "Power": "250 hp",
+      "Seats": 5,
+      "IsActive": true,
+      "IsDeleted": false,
+      "ModelId": 3
+    }
+  ]
+}

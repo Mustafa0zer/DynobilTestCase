@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Dynobil.Entities.SellingAdvert>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Güncel İlanlar</h1>
+@if (Model.Count() == 0)
+{
+    <p>
+        <a asp-controller="Advert" asp-action="AddNewAdvert">Create New</a>
+    </p>
+}
+<table class="table ">
+    <thead>
+        <tr>
+            <th>
+                MARKA
+            </th>
+            <th>
+                MODEL
+            </th>
+            <th>
+                YIL
+            </th>
+            <th>
+                SATIŞ FİYATI
+            </th>
+            <th>
+                KM
+            </th>
+
+            <th>İŞLEMLER</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model.Brand.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SellingPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KmDriven)
+                </td>
+
+                <td>
+                    <span><a class="text-black"  asp-action="UpdateAdvert" asp-route-id="@item.Id">Düzenle</a> </span>
+                    <span><a class="text-black" style="margin-left:25px" asp-action="DetailAdvert" asp-route-id="@item.Id">Detay</a> </span>
+                    <span><a class="text-black" style="margin-left:25px" asp-action="DeleteAdvert" asp-route-id="@item.Id">Sil</a> </span>
+                </td>
+            </tr>
+        }
+    </tbody>
+    @if (TempData["ResultMessage"] != null)
+    {
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img src="..." class="rounded me-2" alt="...">
+                    <strong class="me-auto">Bootstrap</strong>
+                    <small>11 mins ago</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    Hello, world! This is a toast message.
+                </div>
+            </div>
+        </div>
+    }
+</table>
