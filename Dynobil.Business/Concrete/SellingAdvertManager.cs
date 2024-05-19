@@ -1,14 +1,8 @@
 ﻿using Dynobil.Business.Abtraction;
 using Dynobil.DataAccess.Abstract;
-using Dynobil.DataAccess.Concrete;
 using Dynobil.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace Dynobil.Business.Concrete
 {
@@ -55,7 +49,7 @@ namespace Dynobil.Business.Concrete
 
         public SellingAdvert Get(int id)
         {
-           var advert =  _sellingAdvertRepository.Get(x=>x.Id == id,include:x=>x.Include(c=>c.Model).ThenInclude(y=>y.Brand));
+            var advert = _sellingAdvertRepository.Get(x => x.Id == id, include: x => x.Include(c => c.Model).ThenInclude(y => y.Brand));
             return advert;
         }
 
@@ -64,7 +58,7 @@ namespace Dynobil.Business.Concrete
             try
             {
                 var adverts = _sellingAdvertRepository.GetAll(query =>
-                                                              query.Include(ad=>ad.Model).ThenInclude(ad=>ad.Brand)
+                                                              query.Include(ad => ad.Model).ThenInclude(ad => ad.Brand)
                                                               ).ToList();
                 return adverts;
             }

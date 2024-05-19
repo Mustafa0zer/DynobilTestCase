@@ -22,14 +22,13 @@ namespace Dynobil.UI.Controllers
         public IActionResult Index()
         {
             var adverts = _advertService.GetAll();
-            
+
             return View(adverts);
         }
         [HttpGet]
         public IActionResult AddNewAdvert()
         {
             var brands = _brandService.GetAll();
-            var models = _modelService.GetAll();
             ViewBag.BrandList = new SelectList(brands, "Id", "Name");
             ViewBag.ModelList = new SelectList(Enumerable.Empty<SelectListItem>());
             return View(new SellingAdvert());
@@ -52,7 +51,6 @@ namespace Dynobil.UI.Controllers
         public IActionResult UpdateAdvert(int id)
         {
             var brands = _brandService.GetAll();
-            var models = _modelService.GetAll();
             ViewBag.BrandList = new SelectList(brands, "Id", "Name");
             ViewBag.ModelList = new SelectList(Enumerable.Empty<SelectListItem>());
             var advert = _advertService.Get(id);
@@ -62,7 +60,7 @@ namespace Dynobil.UI.Controllers
         [HttpPost]
         public IActionResult UpdateAdvert(SellingAdvert advert)
         {
-           var result =  _advertService.UpdateSellingAdvert(advert);
+            var result = _advertService.UpdateSellingAdvert(advert);
             TempData["ResultMessage"] = result;
             return RedirectToAction("Index");
 
@@ -89,7 +87,7 @@ namespace Dynobil.UI.Controllers
         }
 
         [HttpGet]
-        public IActionResult DeleteAdvert(int id) 
+        public IActionResult DeleteAdvert(int id)
         {
             var result = _advertService.DeleteSellingAdvert(id);
             TempData["ResultMessage"] = result;

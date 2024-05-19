@@ -27,32 +27,42 @@
                 @Html.DropDownListFor(model => model.ModelId, new SelectList(Enumerable.Empty<SelectListItem>()), "Select Model", new { @class = "form-control", id = "modelDropdown" })
             </div>
             <div class="form-group">
-                <label asp-for="Year" class="control-label"></label>
+                <label asp-for="Year" class="control-label">Yıl</label>
                 <input asp-for="Year" class="form-control" />
                 <span asp-validation-for="Year" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SellingPrice" class="control-label"></label>
+                <label asp-for="SellingPrice" class="control-label">Satış Fiyatı</label>
                 <input asp-for="SellingPrice" class="form-control" />
                 <span asp-validation-for="SellingPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="KmDriven" class="control-label"></label>
+                <label asp-for="KmDriven" class="control-label">KM</label>
                 <input asp-for="KmDriven" class="form-control" />
                 <span asp-validation-for="KmDriven" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Fuel" class="control-label"></label>
-                <input asp-for="Fuel" class="form-control" />
-                <span asp-validation-for="Fuel" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Transmission" class="control-label"></label>
-                <input asp-for="Transmission" class="form-control" />
+                <label asp-for="Fuel" class="control-label">Yakıt</label>
+                <select asp-for="Fuel" class="form-control">
+                    <option value="Benzin">Benzin</option>
+                    <option value="Deisel">Diesel</option>
+                    <option value="LPG">LPG</option>
+                    <option value="Electrik">Elektrik</option>
+                    <option value="Hybrid">Hybrid</option>
+                </select>
                 <span asp-validation-for="Transmission" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Engine" class="control-label"></label>
+                <label asp-for="Transmission" class="control-label">Vites</label>
+                <select asp-for="Transmission" class="form-control">
+                    <option value="Automatic">Automatic</option>
+                    <option value="Manuel">Manuel</option>
+                    <option value="Semi-Automatic">Semi Automatic</option>
+                </select>
+                <span asp-validation-for="Transmission" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Engine" class="control-label">Motor</label>
                 <input asp-for="Engine" class="form-control" />
                 <span asp-validation-for="Engine" class="text-danger"></span>
             </div>
@@ -62,13 +72,13 @@
                 <span asp-validation-for="Power" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Seats" class="control-label"></label>
+                <label asp-for="Seats" class="control-label">Koltuk Sayısı</label>
                 <input asp-for="Seats" class="form-control" />
                 <span asp-validation-for="Seats" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input type="hidden" value="true" class="form-check-input" asp-for="IsActive" /> 
+                    <input type="hidden" value="true" class="form-check-input" asp-for="IsActive" />
                 </label>
             </div>
             <div class="form-group form-check">
@@ -76,14 +86,9 @@
                     <input class="form-check-input" type="hidden" value="false" asp-for="IsDeleted" />
                 </label>
             </div>
-           @*  <div class="form-group">
-                <label asp-for="ModelId" class="control-label"></label>
-                <input asp-for="ModelId" class="form-control" />
-                <span asp-validation-for="ModelId" class="text-danger"></span>
-            </div> *@
+
             <div class="form-group">
-@*                 <label  asp-for="Id" class="control-label"></label>
- *@                <input type="hidden" asp-for="Id" class="form-control" />
+                <input type="hidden" asp-for="Id" class="form-control" />
                 <span asp-validation-for="Id" class="text-danger"></span>
             </div>
             <div class="form-group d-flex justify-content-araund">
@@ -117,6 +122,3 @@
     </script>
 }
 
-@* @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-} *@

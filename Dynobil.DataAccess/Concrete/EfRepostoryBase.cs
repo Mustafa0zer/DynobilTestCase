@@ -1,22 +1,13 @@
 ﻿using Dynobil.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Query;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Dynobil.DataAccess.Concrete
 {
-    public class EfRepositoryBase<TEntity, TEntityId, TContext>: IRepository<TEntity, TEntityId>
+    public class EfRepositoryBase<TEntity, TEntityId, TContext> : IRepository<TEntity, TEntityId>
         where TEntity : EntityBase
-        where TContext :DbContext
+        where TContext : DbContext
     {
         protected readonly TContext Context;
         public EfRepositoryBase(TContext context)
@@ -32,7 +23,7 @@ namespace Dynobil.DataAccess.Concrete
         }
 
         public ICollection<TEntity> AddRange(ICollection<TEntity> entities)
-        {         
+        {
             Context.AddRange(entities);
             Context.SaveChanges();
             return entities;
@@ -63,9 +54,9 @@ namespace Dynobil.DataAccess.Concrete
 
         public TEntity? Get(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null)
         {
-            IQueryable<TEntity> queryable = Query();         
+            IQueryable<TEntity> queryable = Query();
             if (include != null)
-                queryable = include(queryable);           
+                queryable = include(queryable);
             return queryable.FirstOrDefault(predicate);
         }
 
@@ -83,7 +74,7 @@ namespace Dynobil.DataAccess.Concrete
 
 
         public IQueryable<TEntity> Query() => Context.Set<TEntity>();
-        
+
 
         public TEntity Update(TEntity entity)
         {
@@ -99,6 +90,6 @@ namespace Dynobil.DataAccess.Concrete
             return entities;
         }
 
-        
+
     }
 }

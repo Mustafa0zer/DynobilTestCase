@@ -1,13 +1,7 @@
 ﻿using Dynobil.Business.Abtraction;
 using Dynobil.DataAccess.Abstract;
-using Dynobil.DataAccess.Concrete;
 using Dynobil.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace Dynobil.Business.Concrete
 {
@@ -73,12 +67,12 @@ namespace Dynobil.Business.Concrete
                 _carBrandRepository.Delete(carBrand);
                 return "Silme işlemi başarılı";
             }
-            catch (Exception e )
+            catch (Exception e)
             {
-                Console.WriteLine(e.ToString() );
+                Console.WriteLine(e.ToString());
                 return "silme işlemi sırasında bir hata oluştu. ";
-            } 
-            
+            }
+
         }
 
         public ICollection<CarBrand> GetAll()
@@ -91,7 +85,7 @@ namespace Dynobil.Business.Concrete
                 else
                     return new List<CarBrand>();
             }
-            catch (Exception e )
+            catch (Exception e)
             {
                 Console.Write(e.ToString());
                 return new List<CarBrand>();
@@ -108,14 +102,14 @@ namespace Dynobil.Business.Concrete
                     return "güncelleme işlemi başarılı";
                 }
                 return "güncelleme işlemi sırasında bir sorun oluştu";
-                    
+
             }
-            catch (Exception e )
+            catch (Exception e)
             {
 
                 return e.ToString();
             }
-           
+
         }
     }
 }

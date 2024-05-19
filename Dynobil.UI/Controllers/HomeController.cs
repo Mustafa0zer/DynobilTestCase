@@ -1,7 +1,6 @@
 using Dynobil.Business.Abtraction;
 using Dynobil.UI.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace Dynobil.UI.Controllers
 {
@@ -29,11 +28,11 @@ namespace Dynobil.UI.Controllers
             {
                 _brandService.BrandUpload();
             }
-            if(dashboardVM.ModelCount == 0)
+            if (dashboardVM.ModelCount == 0)
             {
                 _modelService.ModelUpload();
             }
-            if(dashboardVM.AdvertCount == 0)
+            if (dashboardVM.AdvertCount == 0)
             {
                 _advertService.UploadAdverts();
             }
@@ -41,15 +40,5 @@ namespace Dynobil.UI.Controllers
             return View(dashboardVM);
         }
 
-        //public IActionResult Privacy()
-        //{
-        //    return View();
-        //}
-
-        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        //public IActionResult Error()
-        //{
-        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        //}
     }
 }
